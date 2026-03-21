@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Fib.h"
 
-
 int main() {
     const int n = 10;
     long long prev = 0;
