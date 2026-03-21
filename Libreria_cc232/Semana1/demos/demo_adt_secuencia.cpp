@@ -104,12 +104,12 @@ public:
         for (int i = 0; i < size(); ++i) {
             std::cout << data_[i] << (i + 1 < size() ? ", " : "]\n");
         }
-        std::cout << "  invariante: el ADT es el mismo; cambia la representacion interna\n";
+        std::cout << "  invariante: el ADT es el mismo, cambia la representacion interna\n";
     }
 };
 
 void run_scenario(IntSequence& seq) {
-    std::cout << "\n== Escenario sobre " << seq.name() << " ==\n";
+    std::cout << "\n=Escenario sobre " << seq.name() << " ==\n";
     seq.add(0, 10);
     seq.add(1, 20);
     seq.add(1, 15);
