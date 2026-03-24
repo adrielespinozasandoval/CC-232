@@ -1,4 +1,4 @@
-### Instrucciones de uso: `resolver_ejercicios0_v4.2.sh`
+### Instrucciones de uso
 
 Este archivo explica cómo ejecutar los experimentos de `Ejercicios0.md` usando el script `resolver_ejercicios0_v4.2.sh` y el programa base `stl_optimizacion_demostracion.cpp`.
 
