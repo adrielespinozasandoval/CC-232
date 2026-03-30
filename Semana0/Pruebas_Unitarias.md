@@ -7,7 +7,7 @@ Una **prueba unitaria** verifica una pieza pequeña del programa, por ejemplo:
 * una función como `sum`, `power` o `gcdCN`
 * una operación de una estructura de datos como `add`, `remove`, `get` o `set`
 
-En cursos como **CC232**, esto sirve para comprobar que los algoritmos y TADs funcionan de manera **correcta, repetible y aislada**.
+En cursos como **CC232**, esto sirve para comprobar que los algoritmos y ADT's funcionan de manera **correcta, repetible y aislada**.
 
 
 ### 2. ¿Qué es `assert`?
