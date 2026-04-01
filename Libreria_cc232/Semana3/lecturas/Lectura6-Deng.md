@@ -1,8 +1,19 @@
 ### **Estructuras lineales: listas enlazadas simples y dobles, pilas, colas y deques**
 
+#### **Resumen**
+
+Las estructuras lineales constituyen una categoría fundamental dentro de la organización de datos, ya que permiten representar secuencias de elementos conservando un orden lógico bien definido. Sin embargo, dicho orden puede sostenerse mediante representaciones internas distintas, principalmente **contiguas** o **enlazadas**, lo que influye directamente en la forma de acceso, en la eficiencia de las operaciones y en la complejidad de implementación. A partir de esta distinción, el presente informe analiza las características, fundamentos y diferencias de las **listas enlazadas simples y dobles**, así como de estructuras derivadas como las **pilas**, **colas** y **deques**.
+
+En primer lugar, se examina la lógica de las listas enlazadas como estructuras dinámicas en las que la secuencia no depende de posiciones contiguas en memoria, sino de enlaces entre nodos. Sobre esta base, se estudia la lista enlazada simple como modelo elemental de representación secuencial, y la lista enlazada doble como una ampliación que incorpora navegación bidireccional y mayor flexibilidad operativa. Posteriormente, se analizan las pilas, colas y deques como abstracciones lineales con restricciones específicas de acceso, mostrando que una misma interfaz puede implementarse tanto mediante representaciones enlazadas como contiguas, con ventajas y limitaciones particulares en cada caso.
+
+Asimismo, se destaca la importancia de comparar estas estructuras no solo en términos de operaciones abstractas, sino también desde criterios como la **complejidad temporal**, la **complejidad espacial**, la facilidad de mantenimiento de invariantes y la adecuación a distintos patrones de uso. En este sentido, el análisis muestra que no existe una representación universalmente superior, sino soluciones más o menos convenientes según el tipo de acceso, la frecuencia de inserciones y eliminaciones, y las exigencias de eficiencia y simplicidad.
+
+En conjunto, el estudio de estas estructuras permite comprender que toda elección de representación implica compromisos concretos entre rapidez de acceso, flexibilidad de actualización y costo estructural. Por ello, más que aprender operaciones aisladas, resulta fundamental entender la relación entre **modelo abstracto**, **implementación interna** y **comportamiento algorítmico**, ya que esta relación constituye la base del diseño riguroso de estructuras de datos.
+
+
 **Palabras clave** **estructuras lineales**, **listas enlazadas**, **lista enlazada simple**, **lista enlazada doble**, **representación enlazada**, **representación contigua**, **nodos**, **punteros**, **referencias**, **pilas**, **colas**, **deques**, **LIFO**, **FIFO**, **acceso por índice**, **acceso por enlace**, **inserción**, **eliminación**, **recorrido**, **complejidad temporal**, **complejidad espacial**, **invariantes**, **implementación de estructuras de datos**.
 
-#### **Introducción**
+### **Introducción**
 
 El estudio de las estructuras lineales ocupa un lugar central en la formación en estructuras de datos porque permite comprender una idea fundamental de la organización de la información: múltiples elementos pueden disponerse en una secuencia lógica, pero esa secuencia no tiene por qué representarse siempre de la misma manera en memoria. Esta distinción entre el **orden lógico** de los datos y su **representación física** constituye uno de los ejes más importantes para entender por qué existen distintas estructuras lineales y por qué cada una responde mejor a ciertos problemas que a otros.
 
