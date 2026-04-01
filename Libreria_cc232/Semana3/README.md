@@ -24,9 +24,9 @@ El header `include/Capitulo3.h` **no reexporta** `DengList.h` ni `MorinDengBridg
 
 Esto se hizo para que `Semana3` pueda compilarse y usarse de forma independiente, sin obligar a depender del wrapper de Deng. En otras palabras, el núcleo de esta carpeta queda centrado en:
 
-- listas enlazadas de Morin
-- adaptadores enlazados `Stack`, `Queue` y `Deque`
-- comparación con una estructura contigua (`ArrayDeque`)
+- Listas enlazadas de Morin
+- Adaptadores enlazados `Stack`, `Queue` y `Deque`
+- Comparación con una estructura contigua (`ArrayDeque`).
 
 Las piezas relacionadas con Deng pueden seguir existiendo, pero quedan como **componentes opcionales**.
 
@@ -34,7 +34,7 @@ Las piezas relacionadas con Deng pueden seguir existiendo, pero quedan como **co
 
 Además de los headers, esta carpeta incluye:
 
-- demos de uso básico
-- pruebas públicas
-- un benchmark corto para comparación experimental
+- Demostraciones de uso básico
+- Pruebas públicas
+- Un benchmark corto para comparación experimental.
 
