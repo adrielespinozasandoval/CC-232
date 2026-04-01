@@ -3,7 +3,7 @@
 - Duración: 3 horas de clase.
 - Modalidad: Trabajo en parejas.
 - Tiempo de instalación: 15 minutos al inicio.
-- Entrega: Un archivo llamado `Actividad3-CC232.md`.
+- Entrega: Un archivo llamado `actividad3-CC232.md`.
 
 #### Objetivo
 
