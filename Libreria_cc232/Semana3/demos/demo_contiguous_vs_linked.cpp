@@ -37,7 +37,7 @@ public:
 } // namespace
 
 int main() {
-    std::cout << "=== Comparacion contiguo vs enlazado (standalone Semana3) ===\n\n";
+    std::cout << "Comparacion contiguo vs enlazado (standalone Semana3)\n\n";
 
     std::cout << "[1] Cola FIFO\n";
     ArrayQueueOnDeque<int> aq;
@@ -83,8 +83,8 @@ int main() {
     std::cout << "Observaciones:\n";
     std::cout << "- La representacion contigua ofrece mejor localidad de memoria.\n";
     std::cout << "- La representacion enlazada facilita inserciones/borrados locales.\n";
-    std::cout << "- En este ZIP standalone, ArrayDeque cubre la comparacion contigua;\n";
-    std::cout << "  en el repo completo se puede complementar con ArrayQueue y DualArrayDeque.\n";
+    std::cout << "- ArrayDeque cubre la comparacion contigua;\n";
+    std::cout << "  En el repositorio se puede complementar con ArrayQueue y DualArrayDeque.\n";
 
     return 0;
 }
