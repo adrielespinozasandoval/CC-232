@@ -72,7 +72,7 @@ En particular:
 
 - En Morin, `SLList` implementa muy bien operaciones de **stack** y **queue** en tiempo constante por operación.
 - En Morin, `DLList` con nodo centinela `dummy` permite implementar `get(i)`, `set(i,x)`, `add(i,x)` y `remove(i)` en `O(1 + min(i, n-i))`.
-- En Morin, `SEList` ofrece un compromiso entre listas y arreglos usando bloques.
+- En Morin, `SEList` ofrece un trade-off entre listas y arreglos usando bloques.
 - En Deng, la lista se presenta como una estructura secuencial dinámica donde el acceso importante es por **posición/enlace** más que por rango, y el ADT incluye operaciones como inserción local, búsqueda, eliminación y recorrido.
 
 ### Linux
@@ -349,7 +349,7 @@ Esta implementación está pensada para reforzar tres ideas centrales:
 - `LinkedDeque` sobre `DLList`: operaciones en ambos extremos en `O(1)`
 - `DLList::get(i)`: `O(1 + min(i, n-i))`
 - `ArrayDeque`: buena localidad de memoria y comportamiento práctico competitivo
-- `SEList`: compromiso entre acceso por bloques y flexibilidad enlazada. Sus operaciones combinan costo de ubicación por bloques y redistribución amortizada
+- `SEList`: trade-off entre acceso por bloques y flexibilidad enlazada. Sus operaciones combinan costo de ubicación por bloques y redistribución amortizada
 - En Deng, la lista enfatiza acceso por **posición** y operaciones locales sobre nodos, con ADT de inserción, eliminación, búsqueda, deduplicación y recorrido
 
 
