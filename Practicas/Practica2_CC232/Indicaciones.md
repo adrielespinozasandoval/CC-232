@@ -77,7 +77,7 @@ El estudiante debe mostrar en el video el historial de commits de su repositorio
 - commits hechos solo para aparentar avance,
 - commits concentrados al final sin evidencia de evolución técnica.
 
-**Regla dura:**  
+**Regla**  
 Si el repositorio no demuestra proceso real de desarrollo, el componente de autoría se considera **no logrado**.
 
 ##### 3.4 Uso de cabeceras
@@ -332,7 +332,7 @@ Si además falla compilación o modificación, la nota será **01**.
 - muestra resultados correctos,
 - enseña al menos un caso borde.
 
-**Regla dura:**  
+**Regla**  
 Si no compila ni ejecuta en video, el trabajo **puede bajar a 01**.
 
 ##### 9.4 Bloque de modificación/codificación grabada - 3 puntos
