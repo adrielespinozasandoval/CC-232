@@ -10,3 +10,6 @@ enable_testing()
 
 add_subdirectory(Semana1)
 add_subdirectory(Semana2)
+add_subdirectory(Semana3)
+add_subdirectory(Semana4)
+add_subdirectory(Semana5)
