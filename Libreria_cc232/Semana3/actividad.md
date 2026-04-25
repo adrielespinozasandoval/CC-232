@@ -29,3 +29,16 @@
 |`Semana3/demos/demo_xor_list.cpp`|`XorList: 5 10 20, front=5 back=20`|Lista XOR||
 |`Semana3/demos/demo_linked_adapters.cpp`||Adaptadores de estructas con enlaces||
 |`Semana3/demos/demo_contiguous_vs_linked.cpp`||Lista contigua vs enlazada||
+
+## Bloque 3
+
+1. Valida el comportamiento de `add`, `push`, `size`, `peek`, `pop`, `remove` y `size`.
+2. Valida el comportamiento de `add`, `size`, `get`, `remove` y `size`
+3. Valida el comportamiento de `add`, `size`, `get`, `remove` y `size`
+4. `to_vector`, `secondLast`, `checkSize`, `rotate`, `isPalindrome`, `remove `, `front`
+5. Los comportamientos de un `Stack`, `LinkedStack`, `LinkQueue` y `LinkDeque`.
+6. La reutilización de la funciónes de ordenamiento y conversión a vector.
+7. Se estresa su estabilidad por medio de la ocupación de la lista en memoria, haciendola crecer y decrecer.
+8. Un comportamiento mínimo esperado de las funciones.
+9. No demuestra comportamientos más internos, como invariantes, costos, casos bordes, etc.
+10. Porque comportamientos internos requieren de análisis del algoritmo.
