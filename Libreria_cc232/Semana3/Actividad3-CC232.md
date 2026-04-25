@@ -9,7 +9,7 @@
 
 Consolidar lo trabajado en la Semana 3 a partir de código, demos, pruebas y una defensa escrita breve.
 
-La meta es distinguir con claridad qué cambia cuando pasamos de representaciones contiguas a representaciones enlazadas, por qué en una lista enlazada el acceso importante deja de ser por rango y pasa a ser por posición o enlace, cómo una `SLList` implementa muy bien operaciones de `Stack` y `Queue`, cómo una `DLList` con nodo centinela simplifica inserciones y eliminaciones, y por qué una `SEList` ofrece un compromiso entre acceso, actualización local y uso de espacio.
+La meta es distinguir con claridad qué cambia cuando pasamos de representaciones contiguas a representaciones enlazadas, por qué en una lista enlazada el acceso importante deja de ser por rango y pasa a ser por posición o enlace, cómo una `SLList` implementa muy bien operaciones de `Stack` y `Queue`, cómo una `DLList` con nodo centinela simplifica inserciones y eliminaciones, y por qué una `SEList` ofrece un trade-off entre acceso, actualización local y uso de espacio.
 
 Además, se busca conectar las implementaciones enlazadas de Morin con la interfaz y operaciones de lista reforzadas por Deng, incluyendo el uso de `DengList` y `MorinDengBridge` para reutilizar operaciones como ordenamiento, eliminación de duplicados y reversa sin reescribir toda la lógica estructural.
 
@@ -59,8 +59,8 @@ Además, se busca conectar las implementaciones enlazadas de Morin con la interf
 
 #### Lecturas obligatorias
 
-- `Parte3-Deng.docx`
-- `Parte3-Morin.docx`
+- `Parte3-Deng.pdf`
+- `Parte3-Morin.pdf`
 
 #### Bloque 0 - Instalación y preparación
 
@@ -75,8 +75,8 @@ Además, se busca conectar las implementaciones enlazadas de Morin con la interf
 Revisen:
 
 - `Semana3/README.md`
-- `Parte3-Deng.docx`
-- `Parte3-Morin.docx`
+- `Parte3-Deng.pdf`
+- `Parte3-Morin.pdf`
 - `Semana3/include/SLList.h`
 - `Semana3/include/DLList.h`
 - `Semana3/include/SEList.h`
@@ -164,8 +164,8 @@ Revisen:
 - `Semana3/include/SLList.h`
 - `Semana3/include/DLList.h`
 - `Semana3/include/SEList.h`
-- `Parte3-Morin.docx`
-- `Parte3-Deng.docx`
+- `Parte3-Morin.pdf`
+- `Parte3-Deng.pdf`
 
 Respondan:
 
@@ -180,7 +180,7 @@ Respondan:
 9. Expliquen cómo `isPalindrome()` aprovecha la naturaleza doblemente enlazada de la estructura.
 10. En `SEList`, expliquen qué representa `Location`.
 11. Expliquen qué hacen `spread()` y `gather()` y en qué situaciones aparecen.
-12. Expliquen cómo el tamaño de bloque `b` afecta compromiso entre acceso, actualización y uso de espacio.
+12. Expliquen cómo el tamaño de bloque `b` afecta el trade-off entre acceso, actualización y uso de espacio.
 
 #### Bloque 5 - Adaptadores y estructuras derivadas
 
@@ -217,7 +217,7 @@ Revisen:
 - `Semana3/demos/demo_morin_deng_bridge.cpp`
 - `Semana3/pruebas_publicas/test_public_deng_bridge.cpp`
 - `Semana3/pruebas_internas/test_internal_deng_algorithms.cpp`
-- `Parte3-Deng.docx`
+- `Parte3-Deng.pdf`
 
 Respondan:
 
@@ -238,7 +238,7 @@ Revisen:
 - `Semana3/demos/demo_contiguous_vs_linked.cpp`
 - `Semana3/demos/demo_xor_list.cpp`
 - `Semana3/benchmarks/benchmark_semana3.cpp`
-- `Parte3-Morin.docx`
+- `Parte3-Morin.pdf`
 
 Respondan:
 

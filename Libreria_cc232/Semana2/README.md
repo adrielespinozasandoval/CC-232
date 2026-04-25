@@ -1,7 +1,7 @@
 ### Semana 2
 
 Esta semana introduce las primeras estructuras de datos dinámicas basadas en arreglos, con énfasis en memoria contigua, crecimiento de capacidad, costo amortizado y organización eficiente del acceso.
-Además, se presentan variantes que permiten estudiar distintos compromisos entre simplicidad, costo de actualización y uso de memoria.
+Además, se presentan variantes que permiten estudiar distintos trade-off entre simplicidad, costo de actualización y uso de memoria.
 
 #### Temas trabajados
 
