@@ -1,23 +1,29 @@
 #pragma once
 
-#include <cstddef>
+#include <vector>
 
 template <typename T>
 class Stack {
-    T* stack;
-    size_t top;
+    std::vector<T> data;
 public:
-    Stack(size_t size) {
-        stack = new T[size];
-    }
-    ~Stack() {
-        delete[] stack;
-    }
+    Stack() = default;
+    explicit Stack(size_t size) { data.reserve(size); }
+    ~Stack() = default;
 
     void push(const T& item) {
-        stack[top++] = item;
+        data.push_back(item);
     }
+
     T pop() {
-        return stack[--top];
+        T item = data.back();
+        data.pop_back();
+        return item;
+    }
+
+    bool empty() const {
+        return data.empty();
+    }
+    size_t size() const {
+        return data.size();
     }
 };
