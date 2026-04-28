@@ -46,7 +46,9 @@ class AVLTree {
         newRoot->left = node;
         node->parent = newRoot;
         node->right = tmp;
-        tmp->parent = node;
+        if (tmp) {
+            tmp->parent = node;
+        }
         node->height = std::max(height(node->left), height(node->right)) + 1;
         newRoot->height = std::max(height(newRoot->left), height(newRoot->right)) + 1;
         return newRoot;
@@ -58,7 +60,9 @@ class AVLTree {
         newRoot->right = node;
         node->parent = newRoot;
         node->left = tmp;
-        tmp->parent = node;
+        if (tmp) {
+            tmp->parent = node;
+        }
         node->height = std::max(height(node->left), height(node->right)) + 1;
         newRoot->height = std::max(height(newRoot->left), height(newRoot->right)) + 1;
         return newRoot;
@@ -81,15 +85,11 @@ class AVLTree {
 
     void tostr_helper(Node* node, const std::string& prefix, bool isLeft, std::stringstream& ss) {
         if (!node) return;
-
         ss << prefix << (isLeft ? "├── " : "└── ") << node->key << "\n";
-
         std::string childPrefix = prefix + (isLeft ? "│   " : "    ");
-
         if (node->left || node->right) {
             if (node->left) tostr_helper(node->left, childPrefix, true, ss);
             else ss << childPrefix << "├── (null)\n";
-
             if (node->right) tostr_helper(node->right, childPrefix, false, ss);
             else ss << childPrefix << "└── (null)\n";
         }
@@ -104,8 +104,7 @@ public:
     }
 
     Node& insert(T& key) {
-        Node* curr = root;
-        Node* prev = nullptr;
+        Node* curr = root, *prev;
         Stack<Node*> stack;
         Stack<bool> dir;
         while (curr) {
@@ -149,11 +148,10 @@ public:
         return *created;
     }
     bool remove(T& key) {
-        Node* curr = root;
-        Node* prev = nullptr;
+        Node* curr = root, *prev = nullptr;
         T currKey = key;
-        bool removed = false;
         Stack<Node*> stack;
+        bool removed = false;
         Stack<bool> dir;
         while (curr) {
             stack.push(curr);
@@ -172,13 +170,15 @@ public:
             } else {
                 prev = curr->left ? curr->left : curr->right;
                 removed = true;
+                stack.pop();
+                stack.push(prev);
+                curr->left = nullptr, curr->right = nullptr;
                 delete curr;
                 break;
             }
         }
-
-        if (!removed) {
-            prev = curr;
+        if (removed) {
+            prev = nullptr;
         }
         while (!stack.empty()) {
             curr = stack.pop();
@@ -191,7 +191,9 @@ public:
             } else {
                 curr->right = prev;
             }
-            prev->parent = curr;
+            if (prev) {
+                prev->parent = curr;
+            }
             curr->height = std::max(height(curr->left), height(curr->right)) + 1;
             int b = balance(curr);
             if (b > 1 && balance(curr->left) >= 0) {
@@ -207,6 +209,9 @@ public:
             }
         }
         root = prev;
+        if (root) {
+            root->parent = nullptr;
+        }
         return removed;
     }
     Node* find(T& key) {
