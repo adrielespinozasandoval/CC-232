@@ -7,22 +7,27 @@
 
 template <typename T>
 class AVLTree {
+protected:
     struct Node {
         T key;
         int height;
         Node* left;
         Node* right;
-        Node* parent;
 
-        Node(T key) : key(key), height(1), left(nullptr), right(nullptr), parent(nullptr) {}
+        Node(T key) : key(key), height(1), left(nullptr), right(nullptr) {}
         ~Node() {
             delete left;
             delete right;
         }
     };
 
-    Node* root;
-    std::function<bool(T, T)> compare;
+    Node* root = nullptr;
+    const std::function<bool(T, T)> compare;
+    const std::function<void(Node*, Node*, bool)> const update;
+    static const std::function<void(Node*, Node*, bool)>& const_defUpd() const {
+        static const std::function<void(Node*, Node*, bool)> inst = [](Node*, Node*, bool) {};
+        return inst;
+    }
 
     inline int height(Node* node) {
         return node ? node->height : 0;
@@ -31,10 +36,17 @@ class AVLTree {
         return node ? height(node->left) - height(node->right) : 0;
     }
 
-    Node* minValNode(Node* node) {
+    static Node* minValNode(Node* node) {
         Node* curr = node;
         while (curr->left) {
             curr = curr->left;
+        }
+        return curr;
+    }
+    static Node* maxValNode(Node* node) {
+        Node* curr = node;
+        while (curr->right) {
+            curr = curr->right;
         }
         return curr;
     }
@@ -42,13 +54,14 @@ class AVLTree {
     Node* rotl(Node* node) {
         Node* newRoot = node->right;
         Node* tmp = newRoot->left;
-        newRoot->parent = node->parent;
         newRoot->left = node;
-        node->parent = newRoot;
+        //node->parent = newRoot;
         node->right = tmp;
-        if (tmp) {
-            tmp->parent = node;
-        }
+        //if (tmp) {
+        //    tmp->parent = node;
+        //}
+        update(node, tmp, false);
+        update(newRoot, node, true);
         node->height = std::max(height(node->left), height(node->right)) + 1;
         newRoot->height = std::max(height(newRoot->left), height(newRoot->right)) + 1;
         return newRoot;
@@ -56,13 +69,14 @@ class AVLTree {
     Node* rotr(Node* node) {
         Node* newRoot = node->left;
         Node* tmp = newRoot->right;
-        newRoot->parent = node->parent;
         newRoot->right = node;
-        node->parent = newRoot;
+        //node->parent = newRoot;
         node->left = tmp;
-        if (tmp) {
-            tmp->parent = node;
-        }
+        //if (tmp) {
+        //    tmp->parent = node;
+        //}
+        update(node, tmp, true);
+        update(newRoot, node, false);
         node->height = std::max(height(node->left), height(node->right)) + 1;
         newRoot->height = std::max(height(newRoot->left), height(newRoot->right)) + 1;
         return newRoot;
@@ -94,17 +108,18 @@ class AVLTree {
             else ss << childPrefix << "└── (null)\n";
         }
     }
+
+    AVLTree(std::function<bool(T, T)> compare, std::function<void(T*, T*, bool)> update) :
+        compare(compare), update(update) {}
 public:
-    AVLTree(std::function<bool(T, T)> compare) {
-        root = nullptr;
-        this->compare = compare;
-    }
+    AVLTree(std::function<bool(T, T)> compare) : compare(compare), update(const_defUpd()) {}
     ~AVLTree() {
         delete root;
     }
 
     Node& insert(T& key) {
         Node* curr = root, *prev;
+        bool currDir;
         Stack<Node*> stack;
         Stack<bool> dir;
         while (curr) {
@@ -124,12 +139,14 @@ public:
         prev = created;
         while (!stack.empty()) {
             curr = stack.pop();
-            if (dir.pop()) {
+            currDir = dir.pop();
+            if (currDir) {
                 curr->left = prev;
             } else {
                 curr->right = prev;
             }
-            prev->parent = curr;
+            update(curr, prev, currDir);
+            //prev->parent = curr;
             curr->height = std::max(height(curr->left), height(curr->right)) + 1;
             int b = balance(curr);
             if (b > 1 && compare(key, curr->left->key)) {
@@ -151,7 +168,7 @@ public:
         Node* curr = root, *prev = nullptr;
         T currKey = key;
         Stack<Node*> stack;
-        bool removed = false;
+        bool removed = false, currDir;
         Stack<bool> dir;
         while (curr) {
             stack.push(curr);
@@ -172,13 +189,10 @@ public:
                 removed = true;
                 stack.pop();
                 stack.push(prev);
-                curr->left = nullptr, curr->right = nullptr;
+                prev = nullptr, curr->left = nullptr, curr->right = nullptr;
                 delete curr;
                 break;
             }
-        }
-        if (removed) {
-            prev = nullptr;
         }
         while (!stack.empty()) {
             curr = stack.pop();
@@ -186,14 +200,16 @@ public:
                 prev = nullptr;
                 continue;
             }
-            if (dir.pop()) {
+            currDir = dir.pop();
+            if (currDir) {
                 curr->left = prev;
             } else {
                 curr->right = prev;
             }
-            if (prev) {
-                prev->parent = curr;
-            }
+            update(curr, prev, currDir);
+            //if (prev) {
+                //prev->parent = curr;
+            //}
             curr->height = std::max(height(curr->left), height(curr->right)) + 1;
             int b = balance(curr);
             if (b > 1 && balance(curr->left) >= 0) {
@@ -209,9 +225,9 @@ public:
             }
         }
         root = prev;
-        if (root) {
-            root->parent = nullptr;
-        }
+        //if (root) {
+            //root->parent = nullptr;
+        //}
         return removed;
     }
     Node* find(T& key) {
