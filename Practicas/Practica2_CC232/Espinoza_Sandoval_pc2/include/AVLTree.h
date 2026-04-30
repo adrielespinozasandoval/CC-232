@@ -7,7 +7,6 @@
 
 template <typename T>
 class AVLTree {
-protected:
     struct Node {
         T key;
         int height;
@@ -22,8 +21,10 @@ protected:
     };
 
     Node* root = nullptr;
-    const std::function<bool(T, T)> compare;
-    const std::function<void(Node*, Node*, bool)> const update;
+    std::function<void()> newNode;
+    std::function<void()> delNode;
+    std::function<bool(T, T)> compare;
+    std::function<void(Node*, Node*, bool)> update;
     static const std::function<void(Node*, Node*, bool)>& const_defUpd() const {
         static const std::function<void(Node*, Node*, bool)> inst = [](Node*, Node*, bool) {};
         return inst;
@@ -55,11 +56,7 @@ protected:
         Node* newRoot = node->right;
         Node* tmp = newRoot->left;
         newRoot->left = node;
-        //node->parent = newRoot;
         node->right = tmp;
-        //if (tmp) {
-        //    tmp->parent = node;
-        //}
         update(node, tmp, false);
         update(newRoot, node, true);
         node->height = std::max(height(node->left), height(node->right)) + 1;
@@ -70,11 +67,7 @@ protected:
         Node* newRoot = node->left;
         Node* tmp = newRoot->right;
         newRoot->right = node;
-        //node->parent = newRoot;
         node->left = tmp;
-        //if (tmp) {
-        //    tmp->parent = node;
-        //}
         update(node, tmp, true);
         update(newRoot, node, false);
         node->height = std::max(height(node->left), height(node->right)) + 1;
@@ -109,11 +102,30 @@ protected:
         }
     }
 
-    AVLTree(std::function<bool(T, T)> compare, std::function<void(T*, T*, bool)> update) :
-        compare(compare), update(update) {}
+    AVLTree(std::function<bool(T, T)> compare, std::function<void(T*, T*, bool)> update, std::function<void(Node*)> newNode, std::function<void(Node*)> delNode) :
+        compare(compare), update(update), newNode(newNode), delNode(delNode) {}
+protected:
+    typedef std::conditional_t<(sizeof(size_t) > sizeof(uintptr_t)), size_t, uintptr_t> largestInt;
+    struct aux_ptr {
+        largestInt data;
+        bool isIndex;
+
+        aux_ptr(T* ptr) : data(reinterpret_cast<largestInt>(ptr)), isIndex(false) {}
+        aux_ptr(size_t idx) : data(static_cast<largestInt>(idx)), isIndex(true) {}
+
+        void toVal(T* ptr) {
+            data = reinterpret_cast<largestInt>(ptr);
+            isIndex = false;
+        }
+
+        operator T*() const {
+            return reinterpret_cast<T*>(data);
+        }
+    };
 public:
     AVLTree(std::function<bool(T, T)> compare) : compare(compare), update(const_defUpd()) {}
     ~AVLTree() {
+        //
         delete root;
     }
 
@@ -136,6 +148,7 @@ public:
         }
 
         Node* created = new Node(key);
+        newNode(created);
         prev = created;
         while (!stack.empty()) {
             curr = stack.pop();
@@ -146,7 +159,6 @@ public:
                 curr->right = prev;
             }
             update(curr, prev, currDir);
-            //prev->parent = curr;
             curr->height = std::max(height(curr->left), height(curr->right)) + 1;
             int b = balance(curr);
             if (b > 1 && compare(key, curr->left->key)) {
@@ -190,6 +202,7 @@ public:
                 stack.pop();
                 stack.push(prev);
                 prev = nullptr, curr->left = nullptr, curr->right = nullptr;
+                delNode(curr);
                 delete curr;
                 break;
             }
@@ -207,9 +220,6 @@ public:
                 curr->right = prev;
             }
             update(curr, prev, currDir);
-            //if (prev) {
-                //prev->parent = curr;
-            //}
             curr->height = std::max(height(curr->left), height(curr->right)) + 1;
             int b = balance(curr);
             if (b > 1 && balance(curr->left) >= 0) {
@@ -225,9 +235,6 @@ public:
             }
         }
         root = prev;
-        //if (root) {
-            //root->parent = nullptr;
-        //}
         return removed;
     }
     Node* find(T& key) {
