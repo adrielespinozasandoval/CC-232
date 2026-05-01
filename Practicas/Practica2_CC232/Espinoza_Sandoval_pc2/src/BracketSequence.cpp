@@ -136,7 +136,7 @@ size_t BS::delBracketPos(size_t i) {
             vec[i]->listPos--;
         }
     }
-    if (fPos + 1 == len) {
+    if (fPos + 1 == len && sPos != 0) {
         sPos--;
     }
     len -= removed;

@@ -42,3 +42,15 @@
 8. Un comportamiento mínimo esperado de las funciones.
 9. No demuestra comportamientos más internos, como invariantes, costos, casos bordes, etc.
 10. Porque comportamientos internos requieren de análisis del algoritmo.
+
+# Bloque 4
+
+
+# Bloque 5
+
+
+# Bloque 6
+
+
+# Bloque 7
+
