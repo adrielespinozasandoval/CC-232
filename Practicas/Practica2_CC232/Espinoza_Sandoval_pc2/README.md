@@ -18,8 +18,9 @@
 La solución es en identificar el grupo de paréntesis a borrar. Esto se puede lograr de varias maneras, pero esta en concreto usó en principio un árbol cuyos nodos representan un grupo y sus hijos los que están dentro de él. La clase `BracketSequence` implementa y maneja la parte algorítmica más complicada. 
 
 ### Complejidad
-- Tiempo: $O(n)$
-- Espacio: $O(n)$
+#### `BracketSequence`:
+- Tiempo: $O(n)$ (varía en el caso de borrado)
+- Espacio: $O(n)$ en creación y conversión, $O(1)$ en borrado
 
 ### Invariante o idea clave
 - En la solución del árbol solo se necesita borrar el nodo padre para que todos los descendientes queden sueltos del árbol.
@@ -49,7 +50,8 @@ Describe al menos 3 casos:
 - La cadena se vuelve `(())` y el cursor está en la posición 4
 3. Caso `()` con cursor posición 2.
 - La cadena se vuelve vacía.
-**Nota:** En C++ por defecto el cursor se guarda desde 0 y no desde 1.
+
+**Nota:** En C++ por defecto el cursor se inicia 0 y no desde 1.
 
 ### Historial de commits
 Indica que el historial debe verse en el video.
