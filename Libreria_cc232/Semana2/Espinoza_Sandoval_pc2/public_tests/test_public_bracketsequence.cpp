@@ -17,6 +17,7 @@ int main() {
     cc232::BracketSequence bs5("()(())");
     assert(bs5.delBracketPos(0) == 0);
     assert(bs5.tostr() == "(())");
+    std::cout << std::endl << bs5.delBracketPos(1) << std::endl;
     assert(bs5.delBracketPos(1) == 1);
     assert(bs5.tostr() == "()");
     assert(bs5.delBracketPos(0) == 0);

@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <string>
 
+namespace cc232 {
 class StackEditor {
     std::string str;
     
@@ -18,15 +19,18 @@ public:
             if (str[i] == '(') {
                 stack.push(i);
             } else if (str[i] == ')') {
+                size_t prevLength = str.length();
                 openPos = stack.pop();
-                size_t removed;
                 if (openPos == pos || i == pos) {
-                    removed = i - openPos + 1;
-                    str.erase(openPos, removed);
-                    return openPos - ((i + 1 <= str.length() - removed) ? 0 : 1);
+                    str.erase(openPos, i - openPos + 1);
+                    if (openPos == 0) { //Correction
+                        return 0;
+                    }
+                    return openPos - ((i + 1 < prevLength) ? 0 : 1);
                 }
             }
         }
         throw std::invalid_argument("Position does not correspond to a bracket");
     }
 };
+}
